@@ -1,10 +1,3 @@
-/*
-  Win scenarios
-
-  rock > scissors
-  scissors > paper
-  paper > rock
- */
 
 let playerSelection;
 
@@ -14,9 +7,15 @@ function requestUserInput() {
     Please type in either rock, paper or scissors
     to play the game
     `);
+    return playerSelection
 }
 
-requestUserInput()
+const inputValue = requestUserInput();
+console.log(inputValue, 'inputValue!!')
+
+if (inputValue == null) {
+    requestUserInput();
+}
 
 const choices = ['rock', 'paper', 'scissors'];
 const computerWin = 1;
@@ -41,8 +40,6 @@ function playRound(playerSelection, computerSelection) {
         alert(`Please make sure you enter correct spellings of either rock, paper or scissors in lower or upper case.`);
         requestUserInput();
     }
-
-    console.log(playerSelection, computerSelection, 'selection radoms' )
 
     if (computerSelection.toLowerCase() === playerSelection.toLowerCase()) return -1
 
@@ -87,9 +84,8 @@ const finalScore = game();
 if (finalScore.computerScore > finalScore.playerScore) winner = 'Computer has won';
 if (finalScore.playerScore > finalScore.computerScore) winner = 'User has won';
 
-
 alert(`
     computer score: ${computerScore}
     user score: ${playerScore}
-    ${winner.length > 0 ? winner : 'Draw game!!'}
+    ${winner && winner.length > 0 ? winner : 'Draw game!!'}
 `)
