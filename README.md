@@ -7,3 +7,6 @@ a winner is determined based on the Rock-Paper-Scissors game
 ### Built With
 - Javascript.
 - HTML
+
+### Result
+- Result is displayed in the console.
