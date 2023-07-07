@@ -112,12 +112,17 @@ if (finalScore.playerScore > finalScore.computerScore) {
 
 const individualGameWinner = () => gameResult.map(game => `${game.winner} has won Game ${game.game} `);
 
+
+
 alert(`
-    ${individualGameWinner()[0] ? individualGameWinner()[0] : '' }
-    ${individualGameWinner()[1] ? individualGameWinner()[1] : '' }
-    ${individualGameWinner()[2] ? individualGameWinner()[2] : '' }
-    ${individualGameWinner()[3] ? individualGameWinner()[3] : '' }
-    ${individualGameWinner()[4] ? individualGameWinner()[4] : '' }
+    Important: Please SCROLL down to view Final winner.'
+    ------------------------------------------------------
+
+    ${individualGameWinner()[0] ? individualGameWinner()[0] : 'Game 1 is a draw'}
+    ${individualGameWinner()[1] ? individualGameWinner()[1] : 'Game 2 is a draw'}
+    ${individualGameWinner()[2] ? individualGameWinner()[2] : 'Game 3 is a draw'}
+    ${individualGameWinner()[3] ? individualGameWinner()[3] : 'Game 4 is a draw'}
+    ${individualGameWinner()[4] ? individualGameWinner()[4] : 'Game 5 is a draw'}
     -----------------------------
     -----------------------------
     COMPUTER TOTAL SCORE: ${computerScore}
