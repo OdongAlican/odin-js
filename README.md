@@ -10,3 +10,5 @@ a winner is determined based on the Rock-Paper-Scissors game
 
 ### Result
 - Result is displayed in the console.
+
+NB: Enable to check the scroll on the final alert. Sometimes the content is hidden and one has to scroll.

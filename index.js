@@ -20,6 +20,7 @@ const playerWin = 0;
 let playerScore = 0;
 let computerScore = 0;
 let winner;
+const gameResult = [];
 
 function getComputerChoice() {
     const computerChoice = choices[Math.floor(Math.random() * choices.length)];
@@ -69,15 +70,23 @@ function game() {
 
         const result = playRound(playerSelection, computerSelection);
         if (result === 1) {
-            console.log(`Computer has won game number ${i + 1}`);
+            console.log(`Computer has won Game ${i + 1} !!`);
             computerScore++
+            gameResult.push({
+                winner: 'Computer',
+                game: i + 1
+            });
         }
         if (result === 0) {
-            console.log(`User has won game number ${i + 1}`);
+            console.log(`User has won Game ${i + 1} !!`);
             playerScore++
+            gameResult.push({
+                winner: 'User',
+                game: i + 1
+            });
         }
         if (result === -1) {
-            console.log(`Game number ${i + 1} is a Draw`)
+            console.log(`Game ${i + 1} is a Draw !!`)
         }
     }
 
@@ -101,8 +110,25 @@ if (finalScore.playerScore > finalScore.computerScore) {
     winner = msg;
 }
 
+const individualGameWinner = () => gameResult.map(game => `${game.winner} has won Game ${game.game} `);
+
 alert(`
-    computer score: ${computerScore}
-    user score: ${playerScore}
+    ${individualGameWinner()[0] ? individualGameWinner()[0] : '' }
+    ${individualGameWinner()[1] ? individualGameWinner()[1] : '' }
+    ${individualGameWinner()[2] ? individualGameWinner()[2] : '' }
+    ${individualGameWinner()[3] ? individualGameWinner()[3] : '' }
+    ${individualGameWinner()[4] ? individualGameWinner()[4] : '' }
+    -----------------------------
+    -----------------------------
+    COMPUTER TOTAL SCORE: ${computerScore}
+    -----------------------------
+    -----------------------------
+    USER TOTAL SCORE: ${playerScore}
+    -----------------------------
+    -----------------------------
     ${winner && winner.length > 0 ? winner : 'Draw game!!'}
+
 `)
+
+const button = document.getElementById("btn");
+button?.addEventListener("click", () => location.reload());
