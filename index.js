@@ -7,15 +7,12 @@ function requestUserInput() {
     Please type in either rock, paper or scissors
     to play the game
     `);
-    return playerSelection
+
+    console.log(playerSelection, 'playerSelection');
+    if (playerSelection == null) return
 }
 
-const inputValue = requestUserInput();
-console.log(inputValue, 'inputValue!!')
-
-if (inputValue == null) {
-    requestUserInput();
-}
+requestUserInput();
 
 const choices = ['rock', 'paper', 'scissors'];
 const computerWin = 1;
@@ -34,11 +31,13 @@ function playRound(playerSelection, computerSelection) {
     if (!playerSelection) {
         alert('Player has not typed in the value');
         requestUserInput();
+        return;
     }
 
     if (playerSelection && choices.indexOf(playerSelection.toLowerCase()) == -1) {
         alert(`Please make sure you enter correct spellings of either rock, paper or scissors in lower or upper case.`);
         requestUserInput();
+        return;
     }
 
     if (computerSelection.toLowerCase() === playerSelection.toLowerCase()) return -1
@@ -69,8 +68,17 @@ function game() {
         const computerSelection = getComputerChoice();
 
         const result = playRound(playerSelection, computerSelection);
-        if (result === 1) { computerScore++ }
-        if (result === 0) { playerScore++ }
+        if (result === 1) {
+            console.log(`Computer has won game number ${i + 1}`);
+            computerScore++
+        }
+        if (result === 0) {
+            console.log(`User has won game number ${i + 1}`);
+            playerScore++
+        }
+        if (result === -1) {
+            console.log(`Game number ${i + 1} is a Draw`)
+        }
     }
 
     return {
@@ -81,8 +89,17 @@ function game() {
 
 const finalScore = game();
 
-if (finalScore.computerScore > finalScore.playerScore) winner = 'Computer has won';
-if (finalScore.playerScore > finalScore.computerScore) winner = 'User has won';
+if (finalScore.computerScore > finalScore.playerScore) {
+    const msg = 'Computer has won';
+    console.log(msg)
+    winner = msg;
+}
+
+if (finalScore.playerScore > finalScore.computerScore) {
+    const msg = 'User has won';
+    console.log(msg)
+    winner = msg;
+}
 
 alert(`
     computer score: ${computerScore}
